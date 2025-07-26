@@ -1,5 +1,5 @@
 import logo from './comp_logo-removebg-preview.png'     
-//import logo_icon from './logo_icon.svg'  
+import logo_icon from './logo_icon.png'  
 import arrow_icon from './arrow_icon.svg' 
 import header_img from './header.png' 
 import remove_bg_icon from './bgremove.svg'
@@ -8,14 +8,17 @@ import upload_icon from './upload.svg'
 import download_icon from './download.svg'
 import image_w_bg from './image_w_bg.png'
 import image_wo_bg from './image_wo_bg.png'
-import facebook_icon from './facebook_icon.svg'
-import twitter_icon from './twitter_icon.svg'
+import facebook_icon from './facebook-logo_4406234.png'
+import twitter_icon from './twitter_356076.png'
+import linkedin_icon from './linkedin_356096.png'
+import insta_icon from './instagram_356077.png'
 import profile_img_1 from './profile_img_1.png'
 import profile_img_2 from './profile_img_2.png'
 import credit_icon from './credits.svg'
 
 export const assets = {
     logo,
+    logo_icon,
     arrow_icon,
     header_img,
     remove_bg_icon,
@@ -25,6 +28,8 @@ export const assets = {
     image_wo_bg,
     facebook_icon,
     twitter_icon,
+    linkedin_icon,
+    insta_icon,
     upload_btn_icon,
     credit_icon
 }
@@ -49,19 +54,19 @@ export const testimonialsData = [
 export const plans = [
     {
       id: 'Basic',
-      price: 10,
+      price: 200,
       credits: 100,
       desc: 'Best for personal use.'
     },
     {
       id: 'Advanced',
-      price: 50,
+      price: 500,
       credits: 500,
       desc: 'Best for business use.'
     },
     {
       id: 'Business',
-      price: 250,
+      price: 2500,
       credits: 5000,
       desc: 'Best for enterprise use.'
     },
