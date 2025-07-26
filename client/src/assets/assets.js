@@ -32,17 +32,17 @@ export const assets = {
 export const testimonialsData = [
     {
         id: 1,
-        text: "I've been using bg.removal for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.",
-        author: "Richard Nelson",
+        text: "Snipify is a total game-changer! I used to struggle with messy backgrounds, but now I can clean up my product photos in seconds. It's fast, reliable, and the quality is top-notch. Can't imagine editing without Snipify anymore!",
+        author: "Phil Dunphy",
         image: profile_img_1,
-        jobTitle:'Web Developer'
+        jobTitle:'Freelance Designer'
     },
     {
         id: 2,
-        text: "I've been using bg.removal for nearly 6 months, I had a fantastic experience. The quality is top-notch. I recommend others to try this app.",
-        author: "Donald Jackman",
+        text: "Editing product images used to be a hassle—now it's a breeze with Snipify. The background removal is instant and super clean. I can't imagine my workflow without it! It’s reliable, fast, and saves me hours every week.",
+        author: "Jonas Kahnwald",
         image: profile_img_2,
-        jobTitle:'UI Deginer'
+        jobTitle:'Content Creater'
     },
 ];
 

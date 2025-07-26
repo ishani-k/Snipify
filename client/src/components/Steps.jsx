@@ -6,7 +6,7 @@ const Steps = () => {
     <div className='mx-4 lg:mx-44 py-20 xl:py-40'>
 
         <h1 className='text-center text-2xl md:text-3xl lg:text-4xl font-semibold'>
-          <span className='bg-gradient-to-l from-green-900 to-green-600 bg-clip-text text-transparent'>
+          <span className='bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent'>
             Just Three Steps to Magic..
           </span> ✨🪄
         </h1>

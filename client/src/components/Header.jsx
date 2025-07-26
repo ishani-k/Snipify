@@ -16,11 +16,14 @@ const Header = () => {
         <p className='my-6 text-[15px] text-gray-500'>Clean, professional images - no effort, no cost. <br />
         Snipify delivers fast, AI-powered background removal with pixel-perfect precision. <br /> Whether you're designing, selling, or creating - do it smarter, for <span className='text-[25px] text-green-700'>free.</span></p>
 
-        <input type="file" id="upload1" hidden/>
-        <label className='inline-flex gap-3 px-8 py-3.5 rounded-full cursor-pointer bg-gradient-to-r from-green-700 to-green-400 sm:m-auto mx-16 hover:scale-105 transition-all duration-700 ' htmlFor="upload1">
-          <img src={assets.upload_btn_icon} alt="" className='size-5'/>
-          <p className='text-white text-sm'>Upload your image</p>
-        </label>
+        <div>
+          <input type="file" id="upload1" hidden/>
+          <label className='inline-flex gap-3 px-8 py-3.5 rounded-full cursor-pointer bg-gradient-to-r from-green-700 to-green-400 sm:m-auto mx-16 hover:scale-105 transition-all duration-700 ' htmlFor="upload1">
+            <img src={assets.upload_btn_icon} alt="" className='size-5'/>
+            <p className='text-white text-sm'>Upload your image</p>
+          </label>
+        </div>
+
       </div>
 
       {/*Right side */}
