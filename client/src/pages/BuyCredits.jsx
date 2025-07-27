@@ -10,7 +10,7 @@ export const BuyCredits = () => {
 
       <h1 className='text-center text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent mb-6 sm:mb-10'>Choose the plan that's right for you</h1>
       
-      <div>
+      <div className='flex flex-wrap justify-center gap-6 text-left'>
         {plans.map((item, index) =>(
           <div>
                 <img width={40} src={assets.logo_icon} alt="" />
