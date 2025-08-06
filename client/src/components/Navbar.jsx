@@ -9,11 +9,13 @@ const Navbar = () => {
 
   const {openSignIn} = useClerk()
   const {isSignedIn, user} = useUser()
-  const {credits, loadCreditsdata} = useContext(AppContext)
+  const {credit, loadCreditsData} = useContext(AppContext)
 
   useEffect(() => {
+
     if(isSignedIn){
-      loadCreditsdata
+      loadCreditsData()
+
     }
   }, [isSignedIn])
 
@@ -27,7 +29,7 @@ const Navbar = () => {
           <div className='flex items-center gap-2 sm:gap-3'>
             <button className='flex items-center bg-blue-200 px-4 sm:px-7 py-1.5 sm:py-2.5 rounded-full hover:scale-105 transition-all duration-500'>
               <img className='w-5' src={assets.credit_icon} alt="" />
-              <p className='text-xs sm:text-sm font-medium text-gray-600 px-2'>Credits : {credits}</p>
+              <p className='text-xs sm:text-sm font-medium text-gray-600 px-2'>Credits : {credit}</p>
             </button>
             <p className='text-gray-600 max-sm:hidden'>Hi, {user.fullName}</p>
             <UserButton />
