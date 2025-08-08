@@ -90,5 +90,60 @@ const userCredits = async (req, res) => {
 }
 
 
+//Payment gateway initialize
+
+const razorpayInstance = new razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+})
+
+//API to make payment for credits
+
+const paymentRazorpay = async (req, res) => {
+    try {
+
+        const {clerkId, planId} = req.body
+
+        const userData = await userModel.findOne({clerkId})
+
+        if(!userData || !planId)
+        {
+            return res.json({success: false, message: 'Invalid Credentials !'})
+        }
+
+        let credits, plan, amount, date
+
+        switch (planId) {
+            case 'Basic':
+                plan = 'Basic'
+                credits = 100
+                amount = 200
+                break;
+
+            case 'Advanced':
+                plan = 'Advanced'
+                credits = 500
+                amount = 500
+                break;
+
+            case 'Business':
+                plan = 'Business'
+                credits = 5000
+                amount = 2500
+                break;
+        
+        }
+
+        date = Date.now()
+
+        //creating transaction
+
+        
+    } catch (error) {
+        console.log(error.message)
+        res.json({ success: false, message: error.message })
+    }
+    
+}
 
 export {clerkWebhooks, userCredits}
