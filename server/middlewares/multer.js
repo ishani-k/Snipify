@@ -3,7 +3,13 @@ import multer from "multer"
 //creating multer middleware for parsing form data
 
 const storage = multer.diskStorage({
-    filename: function(re, file, callback){
+
+    destination: function(req, file, callback) {
+        callback(null, 'uploads/')
+    }
+    },
+    {
+    filename: function(req, file, callback){
         callback(null, `${Date.now()}_${file.originalname}`)
     }
 })

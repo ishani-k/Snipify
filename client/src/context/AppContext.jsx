@@ -24,7 +24,7 @@ const AppContextProvider = (props) => {
         
         try {
             const token = await getToken()
-            const {data} = await axios.post(backendUrl+'/api/user/credits', {headers:{token}})
+            const {data} = await axios.post(backendUrl+'/api/user/credits',{}, {headers:{token}})
 
             if (data.success) {
                 setCredit(data.credits)
@@ -72,9 +72,10 @@ const AppContextProvider = (props) => {
                     navigate('/buy')
                 }
             }
-            }
+        }
             
-        } catch (error) {
+        
+        catch (error) {
             console.log(error);
             toast.error(error.message)
         }
@@ -85,7 +86,8 @@ const AppContextProvider = (props) => {
         loadCreditsData, 
         backendUrl,
         image, setImage,
-        removeBg
+        removeBg, 
+        resultImage, setResultImage
     }
 
     return (
