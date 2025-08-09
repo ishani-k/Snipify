@@ -138,6 +138,33 @@ const paymentRazorpay = async (req, res) => {
 
         //creating transaction
 
+        const transactionData = {
+            clerkId,
+            plan,
+            amount,
+            credits,
+            date
+        }
+
+        const newTransaction = await transactionModel.create(transactionData)
+
+        const options = {
+            amount: amount * 100,
+            currency: process.env.CURRENCY,
+            recipt: newTransaction._id
+        }
+
+
+        await razorpayInstance.orders.create(options,(error,order) => {
+
+            if (error) {
+                return res.json({success:false, message:error})
+            }
+
+            res.json({success:true, order})
+        })
+
+
         
     } catch (error) {
         console.log(error.message)
@@ -146,4 +173,4 @@ const paymentRazorpay = async (req, res) => {
     
 }
 
-export {clerkWebhooks, userCredits}
+export {clerkWebhooks, userCredits, paymentRazorpay}
