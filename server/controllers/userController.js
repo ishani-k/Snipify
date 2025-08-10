@@ -1,5 +1,6 @@
-import {Webhook} from 'svix'
+import {messageInRaw, Webhook} from 'svix'
 import userModel from '../models/userModel.js'
+import razorpay from 'razorpay'
 
 
 //Api controller func to manage clerk user w db
@@ -173,4 +174,44 @@ const paymentRazorpay = async (req, res) => {
     
 }
 
-export {clerkWebhooks, userCredits, paymentRazorpay}
+
+//API controller func to verify razorpay payment
+
+const verifyRazorpay = async (req, res) => {
+    
+
+    try {
+        const { razorpay_order_id } = req.body
+
+        const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
+
+        if (orderInfo.status === 'paid') {
+
+            const transactionData = await transactionModel.findbyId(orderInfo.receipt)
+
+            if (transactionData.payment) {
+                return res.json({success: false, message: 'Payment Failed'})
+            }
+
+            //adding credits in user data
+
+            const userData = await userModel.findOne({clerkId: transactionData.clerkId})
+            const creditBalance = userData.creditBalance + transactionData.credits
+
+            await userModel.findByIdAndUpdate(userData._id,{creditBalance})
+
+            //making the payment true
+
+            await transactionModel.findByIdAndUpdate(transactionData._id,{payment:true})
+
+            res.json({success:true, message:'Credits Added :)'})
+
+
+        }
+    } catch (error) {
+        console.log(error.message);
+        res.json({success:false, message:error.message})
+    }
+}
+
+export {clerkWebhooks, userCredits, paymentRazorpay, verifyRazorpay}

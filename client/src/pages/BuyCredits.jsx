@@ -1,7 +1,7 @@
 import React from 'react'
 import { assets, plans } from '../assets/assets'
 import { useContext } from 'react'
-import { AppContext } from '../context/AppContext.js'
+import { AppContext } from '../context/AppContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import axios from 'axios'
@@ -27,6 +27,19 @@ export const BuyCredits = () => {
       receipt: order_receipt,
       handler: async (response) => {
         console.log(response);
+
+        const token = await getToken()
+
+        try {
+
+          const { data } = axios.post(backendUrl+'/api/user/verify-razor',response, {headers:{token}})
+          if (condition) {
+            
+          }
+          
+        } catch (error) {
+          
+        }
       }
     }
     const rzp = new window.Razorpay(options)
