@@ -5,6 +5,7 @@ import { AppContext } from '../context/AppContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const BuyCredits = () => {
 
@@ -32,12 +33,16 @@ export const BuyCredits = () => {
 
         try {
 
-          const { data } = axios.post(backendUrl+'/api/user/verify-razor',response, {headers:{token}})
-          if (condition) {
-            
+          const { data } = await axios.post(backendUrl+'/api/user/verify-razor',response, {headers:{token}})
+          if (data.success) {
+            loadCreditsData()
+            navigate('/')
+            toast.success('Credits Added Yayy')
           }
           
         } catch (error) {
+          console.log(error);
+          toast.error(error.message)
           
         }
       }

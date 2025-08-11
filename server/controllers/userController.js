@@ -204,7 +204,7 @@ const verifyRazorpay = async (req, res) => {
 
             await transactionModel.findByIdAndUpdate(transactionData._id,{payment:true})
 
-            res.json({success:true, message:'Credits Added :)'})
+            res.json({success:true, message:'Credits Added, Enjoy! :)'})
 
 
         }
