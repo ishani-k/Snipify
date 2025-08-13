@@ -1,7 +1,7 @@
-import {messageInRaw, Webhook} from 'svix'
+import { Webhook} from 'svix'
 import userModel from '../models/userModel.js'
 import razorpay from 'razorpay'
-
+import transactionModel from '../models/transactionModel.js'
 
 //Api controller func to manage clerk user w db
 //http://localhost:4000/api/user/webhooks
@@ -104,6 +104,8 @@ const paymentRazorpay = async (req, res) => {
     try {
 
         const {clerkId, planId} = req.body
+        console.log("Backend received clerkId:", clerkId);
+        console.log("Backend planId:", planId);
 
         const userData = await userModel.findOne({clerkId})
 
@@ -152,7 +154,7 @@ const paymentRazorpay = async (req, res) => {
         const options = {
             amount: amount * 100,
             currency: process.env.CURRENCY,
-            recipt: newTransaction._id
+            receipt: newTransaction._id
         }
 
 
@@ -187,7 +189,7 @@ const verifyRazorpay = async (req, res) => {
 
         if (orderInfo.status === 'paid') {
 
-            const transactionData = await transactionModel.findbyId(orderInfo.receipt)
+            const transactionData = await transactionModel.findById(orderInfo.receipt)
 
             if (transactionData.payment) {
                 return res.json({success: false, message: 'Payment Failed'})

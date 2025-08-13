@@ -13,7 +13,7 @@ const authUser = async (req, res, next) => {
         }
 
         const token_decode = jwt.decode(token)
-        req.body.clerkId = token_decode?.clerkId
+        req.body.clerkId = token_decode?.clerkId || req.body.clerkId
 
         next()
         

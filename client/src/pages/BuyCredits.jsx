@@ -14,7 +14,8 @@ export const BuyCredits = () => {
 
   const navigate = useNavigate()
  
-  const { getToken } = useAuth()
+  const { getToken, userId } = useAuth()
+  console.log("Frontend userId from Clerk:", userId);
 
   const initPay = async (order) => {
 
@@ -23,9 +24,9 @@ export const BuyCredits = () => {
       amount: order.amount,
       currency: order.currency,
       name: 'Credits Payment',
-      description: 'Credits Payment',
-      order_ID: order.id,
-      receipt: order_receipt,
+      description: "Credits Payment",
+      order_id: order.id,
+      receipt: order.receipt,
       handler: async (response) => {
         console.log(response);
 
@@ -54,16 +55,19 @@ export const BuyCredits = () => {
 
   const paymentRazorpay = async (planId) => {
     
-
     try {
 
       const token = await getToken()
-      const { data } = await axios.post(backendUrl+'/api/user/pay-razor', {planId}, {headers:{token}})
+      const { data } = await axios.post(backendUrl+'/api/user/pay-razor', {planId, clerkId: userId}, {headers:{token}})
 
       if(data.success)
       {
         initPay(data.order)
       }
+      else {
+        toast.error('Payment could not be initiated');
+      }
+
       
     } catch (error) {
       console.log(error);
@@ -83,7 +87,7 @@ export const BuyCredits = () => {
       
       <div className='flex flex-wrap justify-center gap-6 text-left'>
         {plans.map((item, index) =>(
-          <div className='bg-white drop-shadow-sm border rounded-lg py-12 px-8 text-gray-700 hover:scale-105 transition-all duration-500'>
+          <div key={index} className='bg-white drop-shadow-sm border rounded-lg py-12 px-8 text-gray-700 hover:scale-105 transition-all duration-500'>
                 <img width={40} src={assets.logo_icon} alt="" />
                 <p className='mt-3 font-semibold'>{item.id}</p>
                 <p className='text-sm'>{item.desc}</p>
