@@ -15,7 +15,7 @@ await connectDB()
 
 //Initialize middlewares
 app.use(express.json())
-app.use(cors());
+app.use(cors({ origin: 'https://snipify-ai-bg.vercel.app' }));
 
 
 
