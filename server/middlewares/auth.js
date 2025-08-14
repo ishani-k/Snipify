@@ -38,7 +38,7 @@ const authUser = async (req, res, next) => {
         }
 
         // verify token with Clerk secret or public key
-        const token_decode = jwt.verify(token, process.env.CLERK_JWT_SECRET)
+        const token_decode = jwt.verify(token, process.env.CLERK_WEBHOOK_SECRET)
         req.body.clerkId = token_decode?.sub  // Clerk's user ID is usually in `sub`
 
         next()
