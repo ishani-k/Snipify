@@ -18,8 +18,8 @@ app.use(express.json())
 import cors from "cors";
 
 const allowedOrigins = [
-  `${import.meta.env.FRONTEND_URL}`, // frontend deployed link
-  "http://localhost:4000" // local development
+  "https://snipify-bg.vercel.app", // frontend deployed link
+  "http://localhost:3000" // local development
 ];
 
 app.use(cors({
