@@ -15,7 +15,19 @@ await connectDB()
 
 //Initialize middlewares
 app.use(express.json())
-app.use(cors())
+import cors from "cors";
+
+const allowedOrigins = [
+  `${import.meta.env.FRONTEND_URL}`, // frontend deployed link
+  "http://localhost:4000" // local development
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 
 
 //API routes

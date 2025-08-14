@@ -6,7 +6,7 @@ const userRouter = express.Router()
 
 
 userRouter.post('/webhooks', clerkWebhooks)
-userRouter.post('/credits', authUser, userCredits)
+userRouter.get('/credits', authUser, userCredits)
 userRouter.post('/pay-razor', authUser, paymentRazorpay)
 userRouter.post('/verify-razor', verifyRazorpay)
 
