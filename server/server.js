@@ -15,18 +15,7 @@ await connectDB()
 
 //Initialize middlewares
 app.use(express.json())
-import cors from "cors";
-
-const allowedOrigins = [
-  "https://snipify-bg.vercel.app", // frontend deployed link
-  "http://localhost:3000" // local development
-];
-
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(cors());
 
 
 
