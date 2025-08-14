@@ -65,7 +65,7 @@ export const BuyCredits = () => {
         initPay(data.order)
       }
       else {
-        toast.error('Payment could not be initiated');
+        toast.error(data.message || 'Payment could not be initiated');
       }
 
       

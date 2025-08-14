@@ -4,6 +4,8 @@ import { AppContext } from '../context/AppContext'
 
 export const Result = () => {
 
+  const { removeBg } = useContext(AppContext)
+
   const { resultImage, image } = useContext(AppContext)
 
   return (
@@ -37,7 +39,12 @@ export const Result = () => {
         {/*btns */}
         { resultImage &&
           <div className='flex justify-center sm:justify-end items-center flex-wrap gap-4 mt-6'>
-            <button className='px-8 py-2.5 border border-green-800 text-green-800 rounded-full hover:scale-105 transition-all duration-700'>Try another Image</button>
+            { /* <button className='px-8 py-2.5 border border-green-800 text-green-800 rounded-full hover:scale-105 transition-all duration-700'>Try another Image</button> */}
+            <input onChange={(e) => removeBg(e.target.files[0])}
+                type="file" accept='image/*' id="upload3" hidden/>
+              <label className='px-8 py-2.5 border border-green-800 rounded-full hover:scale-105 transition-all duration-700 cursor-pointer' htmlFor="upload3">
+                <p className=' text-green-800 text-sm'>Try another Image</p>
+              </label>
               <a href={resultImage} download className='px-8 py-2.5 rounded-full bg-gradient-to-br from-gray-700 to-green-700 text-slate-100 hover:scale-105 transition-all duration-700 '>Download Image</a>
           </div>
         }
